@@ -1,0 +1,54 @@
+name: tiny-distill-macos-smoke
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Train tiny distill smoke test
+        run: |
+          python scripts/train_tiny_distill.py --train-data data/tiny_train.jsonl --eval-data data/tiny_eval.jsonl --metrics-out outputs/metrics/train_metrics.json
+
+      - name: Evaluate reloaded adapter
+        run: |
+          python scripts/eval_tiny_distill.py --train-data data/tiny_train.jsonl --eval-data data/tiny_eval.jsonl --adapter-path outputs/checkpoint/adapter.pt --metrics-out outputs/metrics/eval_metrics.json
+
+      - name: Print compact metrics
+        run: |
+          python - <<'PY'
+          import json
+          for name in ["train", "eval"]:
+              p = f"outputs/metrics/{name}_metrics.json"
+              with open(p, "r", encoding="utf-8") as f:
+                  metrics = json.load(f)
+              print(f"\\n=== {name.upper()} METRICS ===")
+              for k in sorted(metrics.keys()):
+                  if k in {"memory_snapshots", "step_logs"}:
+                      print(f"{k}: <{len(metrics[k])} entries>")
+                  else:
+                      print(f"{k}: {metrics[k]}")
+          PY
+
+      - name: Upload metrics artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tiny-distill-macos-metrics
+          path: outputs/metrics/*.json

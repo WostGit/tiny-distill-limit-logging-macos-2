@@ -1,0 +1,4 @@
+{"prompt":"Rewrite politely: Send the invoice today.","target":"Could you please send the invoice today?"}
+{"prompt":"Classify sentiment: The interface is confusing and slow.","target":"negative"}
+{"prompt":"Translate to French: thank you","target":"merci"}
+{"prompt":"Short QA: Capital of Italy?","target":"Rome"}
