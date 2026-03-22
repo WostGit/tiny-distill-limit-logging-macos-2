@@ -1,0 +1,8 @@
+{"input":"summarize: Tiny distillation on macOS runners can be constrained by memory and wall-clock.","target":"tiny distillation on macos is often memory and time constrained"}
+{"input":"rewrite: logging should identify preprocessing, training, checkpoint, and eval overhead.","target":"logs should expose preprocessing training checkpoint and eval overhead"}
+{"input":"explain: small batches with gradient accumulation can reduce RAM spikes.","target":"small batches and accumulation reduce peak ram"}
+{"input":"classify sentiment: i love deterministic smoke tests.","target":"positive"}
+{"input":"classify sentiment: this flaky pipeline is frustrating.","target":"negative"}
+{"input":"complete: bottlenecks include time, ram, token length, and io.","target":"bottlenecks include evaluation overhead and threading behavior too"}
+{"input":"rewrite: prefer transparent scripts over hidden abstractions.","target":"prefer explicit scripts and transparent logs"}
+{"input":"summarize: cpu-only github actions runs must stay tiny and deterministic.","target":"cpu only github actions runs should remain tiny and deterministic"}

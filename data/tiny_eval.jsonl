@@ -1,0 +1,4 @@
+{"input":"summarize: verbose limit logs help diagnose first failure modes.","target":"verbose logs reveal first failure modes"}
+{"input":"classify sentiment: this debugging output is extremely useful.","target":"positive"}
+{"input":"rewrite: checkpoint io can dominate tiny runs on slow disks.","target":"checkpoint io can dominate tiny smoke tests"}
+{"input":"complete: keep the repository self-contained and easy to inspect.","target":"keep data scripts workflows and metrics in one repo"}

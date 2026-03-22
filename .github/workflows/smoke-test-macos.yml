@@ -1,0 +1,54 @@
+name: tiny-distill-smoke-macos
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: macos-15
+    timeout-minutes: 20
+    env:
+      PYTHONUNBUFFERED: "1"
+      OMP_NUM_THREADS: "1"
+      RUNNER_LABEL: "macos-15"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tiny distillation training smoke test
+        run: |
+          python scripts/train_tiny_distill.py --runner-label "${RUNNER_LABEL}"
+
+      - name: Run tiny evaluation smoke test
+        run: |
+          python scripts/eval_tiny_distill.py --runner-label "${RUNNER_LABEL}"
+
+      - name: Show metrics summary in logs
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for p in [Path("outputs/metrics/train_metrics.json"), Path("outputs/metrics/eval_metrics.json")]:
+              data = json.loads(p.read_text())
+              print(f"--- {p} ---")
+              print(json.dumps({k: data[k] for k in data.keys() if k in {'summary','timing','eval_loss','eval_duration_s','adapter_reload_s'}}, indent=2, sort_keys=True))
+          PY
+
+      - name: Upload metrics artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tiny-distill-macos-metrics
+          path: outputs/metrics/*.json
+          if-no-files-found: error
