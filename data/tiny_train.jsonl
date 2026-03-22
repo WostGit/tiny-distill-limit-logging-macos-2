@@ -1,0 +1,8 @@
+{"input":"summarize: tiny models can still teach smaller students","target":"tiny teachers can guide tiny students"}
+{"input":"rewrite: macos runners have limited memory","target":"macos ci machines have tight ram"}
+{"input":"rewrite: verbose logs reveal bottlenecks quickly","target":"detailed logs expose bottlenecks fast"}
+{"input":"summarize: checkpoint saves can dominate tiny runs","target":"checkpoint io can dominate small training"}
+{"input":"rewrite: preprocessing overhead matters for short jobs","target":"preprocessing time matters in short ci runs"}
+{"input":"rewrite: token length can hurt wall clock","target":"long sequences increase run time"}
+{"input":"summarize: thread settings change cpu behavior","target":"threads affect cpu throughput"}
+{"input":"rewrite: evaluate after loading adapters","target":"run eval after adapter reload"}
