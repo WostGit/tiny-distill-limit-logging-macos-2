@@ -1,0 +1,16 @@
+{"prompt":"Summarize: The sky is blue because molecules scatter shorter wavelengths.","target":"The sky looks blue due to atmospheric light scattering."}
+{"prompt":"Rewrite politely: Give me the report now.","target":"Could you please share the report now?"}
+{"prompt":"Classify sentiment: I loved the meal and the service was perfect.","target":"positive"}
+{"prompt":"Classify sentiment: The package arrived late and broken.","target":"negative"}
+{"prompt":"Answer briefly: What is 2 + 2?","target":"4"}
+{"prompt":"Translate to French: good morning","target":"bonjour"}
+{"prompt":"Translate to Spanish: thank you","target":"gracias"}
+{"prompt":"Extract keyword: Apple released a new laptop.","target":"laptop"}
+{"prompt":"Paraphrase: The quick brown fox jumps over the lazy dog.","target":"A fast brown fox leaps over a lazy dog."}
+{"prompt":"Fix grammar: she don't like cold weather","target":"She doesn't like cold weather."}
+{"prompt":"Answer yes or no: Is water wet?","target":"yes"}
+{"prompt":"Summarize: Batteries store chemical energy and release electrical energy.","target":"Batteries convert chemical energy into electrical energy."}
+{"prompt":"Classify topic: Stocks, bonds, and inflation updates.","target":"finance"}
+{"prompt":"Classify topic: New vaccine trial shows strong efficacy.","target":"health"}
+{"prompt":"Short QA: Capital of Japan?","target":"Tokyo"}
+{"prompt":"Short QA: Largest ocean on Earth?","target":"Pacific Ocean"}
