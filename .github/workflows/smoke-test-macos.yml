@@ -1,0 +1,51 @@
+name: tiny-distill-smoke-macos
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: macos-15
+    timeout-minutes: 30
+    env:
+      PYTHONUNBUFFERED: "1"
+      TOKENIZERS_PARALLELISM: "false"
+      RUNNER_LABEL: "macos-15"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Train tiny distillation smoke test
+        run: |
+          python scripts/train_tiny_distill.py \
+            --runner-label "$RUNNER_LABEL" \
+            --train-file data/tiny_train.jsonl \
+            --eval-file data/tiny_eval.jsonl \
+            --metrics-path outputs/metrics/train_metrics.json
+
+      - name: Evaluate tiny distilled adapter
+        run: |
+          python scripts/eval_tiny_distill.py \
+            --runner-label "$RUNNER_LABEL" \
+            --eval-file data/tiny_eval.jsonl \
+            --adapter-dir outputs/checkpoints/tiny_adapter \
+            --metrics-path outputs/metrics/eval_metrics.json
+
+      - name: Upload metrics artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tiny-distill-metrics-macos
+          path: outputs/metrics/*.json
+          if-no-files-found: error
