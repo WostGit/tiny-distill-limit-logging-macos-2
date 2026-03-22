@@ -1,0 +1,8 @@
+{"prompt":"Summarize: The sky looks gray and rain is expected by evening.","response":"It will likely rain later today."}
+{"prompt":"Rewrite politely: Send me the file now.","response":"Could you please send me the file now?"}
+{"prompt":"Extract sentiment: I love this tiny benchmark because it is fast.","response":"positive"}
+{"prompt":"Answer briefly: What is 2+2?","response":"4"}
+{"prompt":"Paraphrase: Tiny tests catch big problems early.","response":"Small tests reveal major issues early."}
+{"prompt":"Complete: Apples are red, bananas are","response":"yellow."}
+{"prompt":"Convert to uppercase: lightweight diagnostics","response":"LIGHTWEIGHT DIAGNOSTICS"}
+{"prompt":"Translate to Spanish: good morning","response":"buenos días"}
